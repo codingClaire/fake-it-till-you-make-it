@@ -1,12 +1,13 @@
 #include<iostream>
+#include<algorithm>
 #include<cmath>
 #include<cstdio>
-using namespace;
+using namespace std;
 
 struct Point
 {
 	double x, y;
-	Point(double x = 0;double y=0):x(x),y(y){}
+	Point(double x = 0,double y=0):x(x),y(y){}
 };
 
 typedef Point Vector;
@@ -65,7 +66,7 @@ double Angle(Vector A, Vector B)
 //向量叉乘
 double Cross(Vector A, Vector B)
 {
-	return A.x+B.y-A.y*B.x；
+	return A.x+B.y-A.y*B.x;
 }
 //向量围成的平行四边形面积
 double paraArea(Point A, Point B, Point C)
@@ -80,7 +81,7 @@ Vector Rotate(Vector A, double rad)
 //向量的单位法线 【A为非零向量】
 Vector Normal(Vector A)
 {
-	double L = Length(Vector A);
+	double L = Length(A);
 	return Vector(-A.y / L, A.x / L);
 }
 //直线的交点 【P+tv和Q+tw的交点 Cross(v,w)!=0且有唯一交点】
@@ -93,7 +94,7 @@ Point Get_Line_Intersection(Point P, Vector v, Point Q, Vector w)
 //点到直线的距离
 double Distance_To_Line(Point A, Point B, Point P)
 {
-	Vector v1 = B - A; v2 = P - A;
+	Vector v1 = B - A,v2 = P - A;
 	return fabs(Cross(v1, v2) / Length(v1));
 }
 //点到线段的距离
@@ -101,7 +102,7 @@ double Distance_To_Segment(Point A, Point B, Point P)
 {
 	if (A == B)
 		return Length(P - A); //A、B重合
-	Vector v1 = B - A; v2 = P - A; v3 = P - B;
+	Vector v1 = B - A,v2 = P - A,v3 = P - B;
 	if (dcmp(Dot(v1, v2)) < 0)
 		return Length(v2);//A点在P、B之间
 	else if (dcmp(Dot(v1, v3)) > 0)
@@ -113,7 +114,7 @@ double Distance_To_Segment(Point A, Point B, Point P)
 Point Get_Line_Projection(Point P, Point A, Point B)
 {
 	Vector v = B - A;
-	return A + v*(Dot(v, P - A) / Dot(v, v);
+	return A + v*(Dot(v, P - A) / Dot(v, v));
 }
 //相交线段判定
 bool Segment_Proper_Intersection(Point a1, Point a2, Point b1, Point b2)
@@ -123,7 +124,7 @@ bool Segment_Proper_Intersection(Point a1, Point a2, Point b1, Point b2)
 		c3 = Cross(b2 - b1, a1 - b1),
 		c4 = Cross(b2 - b1, a2 - b1);
 	return dcmp(c1)*dcmp(c2) < 0 && dcmp(c3)*dcmp(c4) < 0;
-}rfc 
+}
 //判断点是否在线段上，不包含端点
 bool On_Segment(Point P, Point A, Point B)
 {

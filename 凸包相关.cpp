@@ -65,3 +65,4 @@ int ConvexHull(Point* p, int n, Point* ch)
 		m--;
 	return m;
 }
+/*return 的m是凸包的点的个数 ch数组存放的是凸包的顶点 
