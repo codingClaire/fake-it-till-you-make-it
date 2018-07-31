@@ -41,8 +41,8 @@ struct Dijkstra//为了使用方便 直接把算法中运用到的数据结构封装在Dijkstra结构体中
 		Q.push((HeapNode) { 0, s });
 		while (!Q.empty())
 		{
-			HeapNode x = q.top();
-			q.pop();
+			HeapNode x = Q.top();
+			Q.pop();
 			int u = x.u;
 			if (done[u])//新取出来的节点已经被取出来过 应该直接扔掉 
 				continue;//结束本次循环
@@ -112,6 +112,39 @@ bool bellman_ford(int s)
 	}
 	return true;
 }
+
+struct BellmanFord
+{
+	int n, m;
+	vector<Edge> edges;
+	vector<int> G[maxn];
+	bool inq[maxn];
+	int d[maxn];
+	int p[maxn];
+	int cnt[maxn];
+
+	void init(int n)
+	{
+		this->n = n;
+		for (int i = 0; i < n; i++)
+			G[i].clear();
+		edges.clear();
+	}
+
+	void AddEdge(int n)
+	{
+		edges.push_back((Edge) { from, to, dist });
+		m = edges.size();
+	}
+};
+
+
+
+
+
+
+
+
 
 /*Floyd algorithm*/
 /*求每两点之间的最短路*/
